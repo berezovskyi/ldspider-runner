@@ -11,6 +11,7 @@ Prerequisites:
 
 * Maven 3 (for building LDSpider)
 * Python (for URL manipulation, supports both Python 2 and Python 3)
+* Python six library (should be installed already, otherwise `pip install six`)
 * Bash (should work under Git bash on Windows as well)
 
 Clone this repository recursively (LDSpider is included in this repository as a

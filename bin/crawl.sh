@@ -10,7 +10,9 @@ java -jar ../ldspider/target/ldspider-1.3-with-dependencies.jar \
   -b $2                       `# strict breadth-first with n levels of depth` \
   -o "crawl-$(date +%s).nq"   `# output filename` \
   -df "frontier"              `# dump frontier after each round to frontier-xxx` \
-  -t 32                       `# use 32 threads` \
-  -s "seed.txt"               `# use the first argument as a seed list - must be valid RDF`
+  -t 64                       `# use 64 threads` \
+  -s "seed.txt"               `# use the first argument as a seed list - must be valid RDF` \
+  -e                          `# omit header triple in data`
+  # -y "$3"                     `# stay on the hostname in the third argument` \
   # -ctIgnore       `# ignore bad content-type headers and parse all data` \
 

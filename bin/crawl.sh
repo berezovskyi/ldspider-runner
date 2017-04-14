@@ -12,7 +12,7 @@ echo "Limiting the crawl to the domain $domain"
 java -jar ../ldspider/target/ldspider-1.3-with-dependencies.jar \
   -a ldspider.log             `# output the log to ldspider.log` \
   -any23                      `# use all the extractors any23 has` \
-  -b $2                       `# strict breadth-first with n levels of depth` \
+  -b ${2:-1000}               `# strict breadth-first with n levels of depth (1000 if not specified)` \
   -o "crawl-$(date +%s).nq"   `# output filename` \
   -df "frontier"              `# dump frontier after each round to frontier-xxx` \
   -t 64                       `# use 64 threads` \

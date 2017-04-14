@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # USAGE: ./crawl.sh URI depth (e.g. https://www.wikidata.org/wiki/Q12737077 1)
+
+# Use -us if you are from the US of A. Just kiddin' :)
+# see http://www.davidpashley.com/articles/writing-robust-shell-scripts/
 set -eu
 if [ ! -f "../ldspider/target/ldspider-1.3-with-dependencies.jar" ]; then
   sh build.sh

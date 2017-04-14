@@ -7,6 +7,12 @@ getting the complete info about the subject).
 
 ## Getting started
 
+Prerequisites:
+
+* Maven 3 (for building LDSpider)
+* Python (for URL manipulation, supports both Python 2 and Python 3)
+* Bash (should work under Git bash on Windows as well)
+
 Clone this repository recursively (LDSpider is included in this repository as a
 [Git Submodule](https://github.com/blog/2104-working-with-submodules)):
 
@@ -17,4 +23,3 @@ Fetch https://www.wikidata.org/wiki/Q12737077 and 1 level resources it links to:
     ./bin/crawl.sh https://www.wikidata.org/wiki/Q12737077 1
     less crawl-*
 
-Requires Maven 3.

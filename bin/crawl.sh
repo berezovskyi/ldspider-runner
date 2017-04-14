@@ -10,12 +10,12 @@ if [ ! -f "$SCRIPT_DIR/../ldspider/target/ldspider-1.3-with-dependencies.jar" ];
   sh "$SCRIPT_DIR/build.sh"
 fi
 echo "$1" > seed.txt
-domain=$(python -c "from urlparse import urlparse
+domain=$(python -c "from six.moves.urllib.parse import urlparse
 url = urlparse('$1')
-print url.netloc")
+print(url.netloc)")
 echo "Limiting the crawl to the domain $domain"
 java -jar "$SCRIPT_DIR/../ldspider/target/ldspider-1.3-with-dependencies.jar" \
-  -a ldspider.log             `# output the log to ldspider.log` \
+  -a crawl.log                `# log each crawl request to crawl.log` \
   -any23                      `# use all the extractors any23 has` \
   -b ${2:-1000}               `# strict breadth-first with n levels of depth (1000 if not specified)` \
   -o "crawl-$(date +%s).nq"   `# output filename` \
@@ -25,7 +25,7 @@ java -jar "$SCRIPT_DIR/../ldspider/target/ldspider-1.3-with-dependencies.jar" \
   -e                          `# omit header triple in data` \
   -y "$domain"                `# crawl only the resources under the URL's domain'` \
   2>&1                        `# force error output into standard output` \
-  | tee output.log            `# print the output on the screen and into the file` \
+  | tee output.log            `# print the program log output on the screen and into the file` \
   | grep -i err -B 1          `# print only the lines containing the text 'err' and one line before on the screen`
   # -ctIgnore       `# ignore bad content-type headers and parse all data` \
 

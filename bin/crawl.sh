@@ -12,13 +12,15 @@ echo "Limiting the crawl to the domain $domain"
 java -jar ../ldspider/target/ldspider-1.3-with-dependencies.jar \
   -a ldspider.log             `# output the log to ldspider.log` \
   -any23                      `# use all the extractors any23 has` \
-  -b $2                      `# strict breadth-first with n levels of depth` \
+  -b $2                       `# strict breadth-first with n levels of depth` \
   -o "crawl-$(date +%s).nq"   `# output filename` \
   -df "frontier"              `# dump frontier after each round to frontier-xxx` \
   -t 64                       `# use 64 threads` \
   -s "seed.txt"               `# use the first argument as a seed list - must be valid RDF` \
   -e                          `# omit header triple in data` \
   -y "$domain"                `# stay on the hostname in the third argument` \
-  2>&1 | tee output.log | grep -i err -B 1
+  2>&1                        `# force error output into standard output` \
+  | tee output.log            `# print the output on the screen and into the file` \
+  | grep -i err -B 1          `# print only the lines containing the text 'err' and one line before on the screen`
   # -ctIgnore       `# ignore bad content-type headers and parse all data` \
 

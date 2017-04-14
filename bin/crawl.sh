@@ -21,9 +21,9 @@ java -jar "$SCRIPT_DIR/../ldspider/target/ldspider-1.3-with-dependencies.jar" \
   -o "crawl-$(date +%s).nq"   `# output filename` \
   -df "frontier"              `# dump frontier after each round to frontier-xxx` \
   -t 64                       `# use 64 threads` \
-  -s seed.txt                 `# use the first argument as a seed list - must be valid RDF` \
+  -s seed.txt                 `# use the first argument as a seed list - must serve valid RDF` \
   -e                          `# omit header triple in data` \
-  -y "$domain"                `# stay on the hostname in the third argument` \
+  -y "$domain"                `# crawl only the resources under the URL's domain'` \
   2>&1                        `# force error output into standard output` \
   | tee output.log            `# print the output on the screen and into the file` \
   | grep -i err -B 1          `# print only the lines containing the text 'err' and one line before on the screen`

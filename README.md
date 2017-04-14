@@ -3,11 +3,12 @@
 LDSpider is a system to crawl the URLs exposing RDF recursively. This repository
 presents the script to start using LDSpider on a single URI and perform
 breadth-first crawl (we are interested in crawling as much data as possible, not
-get the complete info about the subject).
+getting the complete info about the subject).
 
 ## Getting started
 
-Clone this repository recursively:
+Clone this repository recursively (LDSpider is included in this repository as a
+[Git Submodule](https://github.com/blog/2104-working-with-submodules)):
 
     git clone --recursive https://github.com/berezovskyi/ldspider-runner
 

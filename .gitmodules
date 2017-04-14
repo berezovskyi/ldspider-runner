@@ -1,0 +1,3 @@
+[submodule "ldspider"]
+	path = ldspider
+	url = https://github.com/ldspider/ldspider

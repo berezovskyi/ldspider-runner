@@ -7,6 +7,10 @@ get the complete info about the subject).
 
 ## Getting started
 
+Clone this repository recursively:
+
+    git clone --recursive https://github.com/berezovskyi/ldspider-runner
+
 Fetch https://www.wikidata.org/wiki/Q12737077 and 1 level resources it links to:
 
     cd bin/

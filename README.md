@@ -14,8 +14,7 @@ Clone this repository recursively (LDSpider is included in this repository as a
 
 Fetch https://www.wikidata.org/wiki/Q12737077 and 1 level resources it links to:
 
-    cd bin/
-    ./crawl.sh https://www.wikidata.org/wiki/Q12737077 1
+    ./bin/crawl.sh https://www.wikidata.org/wiki/Q12737077 1
     less crawl-*
 
 Requires Maven 3.

@@ -4,22 +4,24 @@
 # Use -us if you are from the US of A. Just kiddin' :)
 # see http://www.davidpashley.com/articles/writing-robust-shell-scripts/
 set -eu
-if [ ! -f "../ldspider/target/ldspider-1.3-with-dependencies.jar" ]; then
-  sh build.sh
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+echo "$SCRIPT_DIR"
+if [ ! -f "$SCRIPT_DIR/../ldspider/target/ldspider-1.3-with-dependencies.jar" ]; then
+  sh "$SCRIPT_DIR/build.sh"
 fi
 echo "$1" > seed.txt
 domain=$(python -c "from urlparse import urlparse
 url = urlparse('$1')
 print url.netloc")
 echo "Limiting the crawl to the domain $domain"
-java -jar ../ldspider/target/ldspider-1.3-with-dependencies.jar \
+java -jar "$SCRIPT_DIR/../ldspider/target/ldspider-1.3-with-dependencies.jar" \
   -a ldspider.log             `# output the log to ldspider.log` \
   -any23                      `# use all the extractors any23 has` \
   -b ${2:-1000}               `# strict breadth-first with n levels of depth (1000 if not specified)` \
   -o "crawl-$(date +%s).nq"   `# output filename` \
   -df "frontier"              `# dump frontier after each round to frontier-xxx` \
   -t 64                       `# use 64 threads` \
-  -s "seed.txt"               `# use the first argument as a seed list - must be valid RDF` \
+  -s seed.txt                 `# use the first argument as a seed list - must be valid RDF` \
   -e                          `# omit header triple in data` \
   -y "$domain"                `# stay on the hostname in the third argument` \
   2>&1                        `# force error output into standard output` \
